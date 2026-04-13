@@ -1,0 +1,239 @@
+/* ═══════════════════════════════════════════════════════
+   LISTING CARD  —  NH realEState Premium UI
+   ═══════════════════════════════════════════════════════ */
+
+.listing-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,.07);
+  border: 1px solid #EAE3D6;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.listing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.13);
+  border-color: rgba(201,168,76,.35);
+}
+
+/* ── Image Wrapper ── */
+.card-image {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+  background: var(--navy-mid);
+  flex-shrink: 0;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+
+.listing-card:hover .card-image img { transform: scale(1.06); }
+
+/* Category watermark */
+.card-cat-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 12px 10px;
+  background: linear-gradient(to top, rgba(13,27,42,.75), transparent);
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,.75);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ── Badges ── */
+.card-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.cb-type {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.cb-type.sale { background: var(--navy); color: var(--gold); }
+.cb-type.rent { background: var(--gold); color: var(--navy); }
+
+.cb-featured {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  background: rgba(255,255,255,.9);
+  color: var(--navy);
+  border: 1px solid rgba(201,168,76,.4);
+}
+
+/* Offer ribbon */
+.card-offer-ribbon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: .5px;
+}
+
+/* ── Body ── */
+.card-body {
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+/* Title */
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Location */
+.card-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--text-light);
+  line-height: 1.4;
+}
+
+.card-location .loc-icon {
+  color: var(--gold);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* Price */
+.card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+.price-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+}
+
+.price-old {
+  font-size: 13px;
+  color: var(--text-light);
+  text-decoration: line-through;
+}
+
+.price-period {
+  font-size: 11.5px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* Divider */
+.card-divider {
+  height: 1px;
+  background: #EEE8DC;
+  margin: 2px 0;
+}
+
+/* Meta (beds/baths/area) */
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.cm-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12.5px;
+  color: var(--text-mid);
+  padding: 0 10px 0 0;
+  margin-right: 10px;
+  border-right: 1px solid #DDD6C8;
+}
+
+.cm-item:last-child {
+  border-right: none;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.cm-item span:first-child { font-size: 14px; }
+
+/* Footer CTA */
+.card-footer {
+  padding: 12px 18px;
+  border-top: 1px solid #EEE8DC;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FAFAF7;
+}
+
+.card-view-btn {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  letter-spacing: .3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap .2s;
+}
+
+.listing-card:hover .card-view-btn { gap: 8px; }
+
+.card-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.card-status-dot.active  { background: #4CAF50; }
+.card-status-dot.pending { background: #FF9800; }
+.card-status-dot.sold    { background: #F44336; }

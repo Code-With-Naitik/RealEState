@@ -1,0 +1,565 @@
+/* ============================================================
+   NAVBAR — Desktop + Mobile Sidebar Drawer (slides from LEFT)
+   ============================================================ */
+
+/* ---------- Base Navbar ---------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(to bottom, rgba(13, 27, 42, 0.75) 0%, transparent 100%);
+}
+
+.navbar.scrolled {
+    background: rgba(13, 27, 42, 0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 14px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+}
+
+/* ---------- Inner Layout ---------- */
+.nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* ---------- Logo ---------- */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.nav-logo:hover {
+    transform: translateY(-1px);
+}
+
+.logo-img {
+    height: 54px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.logo-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.logo-sub {
+    font-size: 10px;
+    color: var(--gold, #D4AF37);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+/* ---------- Desktop Nav Links ---------- */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 1;
+}
+
+.nav-links a {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 10px 15px;
+    border-radius: 4px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--white, #fff);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 16px;
+    right: 16px;
+    height: 2px;
+    background: var(--gold, #D4AF37);
+    border-radius: 2px;
+}
+
+/* ---------- Desktop Right Actions ---------- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.nav-phone {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--gold, #D4AF37);
+    text-decoration: none;
+    transition: color 0.3s;
+    white-space: nowrap;
+}
+
+.nav-phone:hover {
+    color: #fff;
+}
+
+.phone-icon {
+    font-size: 14px;
+}
+
+/* Sign In button */
+.nav-actions .btn-primary {
+    padding: 10px 22px;
+    font-size: 13px;
+    min-width: 110px;
+    text-align: center;
+    border-radius: 4px;
+    white-space: nowrap;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: var(--gold, #D4AF37);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: background 0.3s;
+}
+
+.nav-actions .btn-primary:hover {
+    background: #b8971f;
+}
+
+/* ---------- User Avatar + Dropdown ---------- */
+.nav-user {
+    position: relative;
+    padding: 4px;
+}
+
+.user-avatar {
+    display: block;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--gold, #D4AF37);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    min-width: 180px;
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    z-index: 1100;
+}
+
+.user-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+    background: transparent;
+}
+
+.nav-user:hover .user-dropdown {
+    display: flex;
+}
+
+.user-dropdown a,
+.user-dropdown button {
+    display: block;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #222;
+    border-radius: 6px;
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.15s;
+    text-decoration: none;
+}
+
+.user-dropdown a:hover,
+.user-dropdown button:hover {
+    background: #f5f0e8;
+    color: var(--gold-dark, #a07800);
+}
+
+/* ---------- Hamburger Button ---------- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    transition: background 0.3s;
+    flex-shrink: 0;
+}
+
+.hamburger:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+.hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
+}
+
+/* Hamburger → X animation when open */
+.hamburger.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.hamburger.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Mobile-only elements hidden on desktop ---------- */
+.mobile-menu-header,
+.mobile-menu-footer,
+.menu-overlay {
+    display: none;
+}
+
+.mobile-links-container {
+    display: contents; /* transparent wrapper on desktop */
+}
+
+/* ============================================================
+   MOBILE STYLES  (≤ 900px)
+   ============================================================ */
+@media (max-width: 900px) {
+
+    /* Show hamburger */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Hide phone + logo subtitle on mobile */
+    .nav-phone {
+        display: none;
+    }
+
+    .logo-sub {
+        display: none;
+    }
+
+    /* Tighten nav bar actions */
+    .nav-actions {
+        gap: 10px;
+    }
+
+    .nav-actions .btn-primary {
+        padding: 8px 14px;
+        font-size: 12.5px;
+        min-width: auto;
+        height: 38px;
+    }
+
+    .user-avatar {
+        width: 34px;
+        height: 34px;
+    }
+
+    /* ---- Sidebar Drawer (slides from LEFT) ---- */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;          /* hidden off-screen to the left */
+        bottom: 0;
+        width: 300px;
+        max-width: 80vw;
+        background: #0b1a2a;   /* deep navy */
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+        gap: 0;
+        transition: left 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 6px 0 40px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* Open state */
+    .nav-links.open {
+        left: 0;
+    }
+
+    /* ---- Sidebar Header ---- */
+    .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 26px 24px 20px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        background: rgba(0,0,0,0.25);
+        flex-shrink: 0;
+    }
+
+.mobile-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-logo-wrap .logo-img {
+    height: 44px;
+}
+
+.mobile-menu-header .logo-main {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gold, #D4AF37);
+    text-transform: uppercase;
+}
+
+    /* Close (✕) button */
+    .close-menu {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: #fff;
+        font-size: 15px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        flex-shrink: 0;
+    }
+
+    .close-menu:hover {
+        background: var(--gold, #D4AF37);
+        color: #0b1a2a;
+        transform: rotate(90deg);
+        border-color: transparent;
+    }
+
+    /* ---- Sidebar Nav Links ---- */
+    .mobile-links-container {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0;
+        gap: 2px;
+        flex: 1;
+    }
+
+    .nav-links a {
+        font-size: 15.5px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.82);
+        padding: 14px 28px;
+        border-bottom: none;
+        text-transform: none;
+        letter-spacing: 0.3px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'Inter', sans-serif;
+        border-radius: 0;
+        background: transparent;
+        transition: background 0.2s, color 0.2s, padding-left 0.2s;
+        text-decoration: none;
+        border-left: 3px solid transparent;
+    }
+
+    .nav-links a::after {
+        content: '›';
+        font-size: 20px;
+        color: var(--gold, #D4AF37);
+        opacity: 0;
+        transform: translateX(-6px);
+        transition: all 0.25s ease;
+        font-family: serif;
+    }
+
+    .nav-links a:hover {
+        background: rgba(212, 175, 55, 0.07);
+        color: #fff;
+        padding-left: 34px;
+        border-left-color: var(--gold, #D4AF37);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .nav-links a.active {
+        background: rgba(212, 175, 55, 0.1);
+        color: var(--gold, #D4AF37);
+        font-weight: 600;
+        border-left-color: var(--gold, #D4AF37);
+    }
+
+    /* Prevent the desktop ::after underline on mobile */
+    .nav-links a.active::after {
+        content: '›';
+        position: static;
+        background: none;
+        height: auto;
+        width: auto;
+        font-size: 20px;
+        color: var(--gold, #D4AF37);
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* ---- Sidebar Footer ---- */
+    .mobile-menu-footer {
+        display: flex;
+        flex-direction: column;
+        padding: 24px 28px 32px;
+        background: rgba(0, 0, 0, 0.25);
+        gap: 14px;
+        border-top: 1px solid rgba(212, 175, 55, 0.12);
+        flex-shrink: 0;
+    }
+
+    .sidebar-foot-title {
+        color: var(--gold, #D4AF37);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    .mobile-phone,
+    .mobile-email {
+        color: rgba(255, 255, 255, 0.78);
+        text-decoration: none;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: color 0.2s;
+    }
+
+    .mobile-menu-footer a::after {
+        display: none !important;
+    }
+
+    .mobile-phone:hover,
+    .mobile-email:hover {
+        color: var(--gold, #D4AF37);
+    }
+
+    /* ---- Backdrop Overlay ---- */
+    .menu-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(5, 12, 20, 0.65);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        z-index: 1000;          /* behind sidebar (1001) but above content */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+        pointer-events: none;
+    }
+
+    .menu-overlay.visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* Lock scroll when menu open */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+    .logo-icon {
+        font-size: 24px;
+    }
+    .logo-main {
+        font-size: 17px;
+    }
+    .nav-actions .btn-primary {
+        padding: 7px 10px;
+        font-size: 12px;
+    }
+}
